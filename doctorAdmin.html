@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <title>医生登录界面</title>
+    <style>
+        .static_header #paginator-static {
+            padding-top: 20px;
+            padding-left:70px;
+            display: block;
+            width: 400px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .static_header .upload{
+            margin: -42px 0 0 50px;
+        }
+        a#upButton {
+            margin-top: -25px;
+            position: absolute;
+            margin-left: 33%;
+        }
+    </style>
+</head>
+<body>
+    <div class="abs"></div>
+    <!--头部导航-->
+    <div class="nav-bg nav-bg-1">
+        <div class="nav container auto">
+            <div class="header">
+                <div class="logo">
+                    <img src="images/logo.png" alt="">
+                </div>
+                <!--登录登出-->
+                <ul class="nav pull-right">
+                    <li id="super-menue" class="dropdown">
+                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-user"></i>
+                            <span id="doctorUser">${user.username}</span>
+                            <i class="icon-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="logout.jsp">登出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--头部信息绑定-->
+    <!--二级联动：首先前台会选择一个患者，把患者的id获取，即value中的值给后台，后台根据id获取患者相应的time-->
+    <div class="search">
+        <div class="pdDiv">
+            <a class="pdDiv_doctor">
+                姓名:<span>${session.name}</span>
+            </a>
+            <span>绑定患者:</span>
+            <select class="selectpicker col-xs-2" id="nameSelect" data-size="5" data-live-search="true" name="selectID">
+                <option value="0" selected>请选择患者</option>
+                <c:forEach items="${patients}" var ="p" varStatus="sp">
+                    <option value="${p.uid}">${p.name}</option>
+                </c:forEach>
+            </select>
+            <span>时间:</span>
+            <select class="selectpicker col-xs-2" data-size="5" id="timeSelect" data-live-search="true" name="selectID">
+            </select>
+            <!--根据时间对应的id查询心电图-->
+            <button class="btn btn-default" id="search" onclick="useAll()">查询</button>
+        </div>
+    </div>
+    <div class="container" id="contain">
+        <ul id="myChartTab" class="nav nav-tabs">
+            <li id="clickDynamic" class="active">
+                <a href="#dynamic" data-toggle="tab">动态</a>
+            </li>
+            <li id="clickStatic">
+                <a href="#static" data-toggle="tab">静态</a>
+            </li>
+        </ul>
+        <div id="myChartTabContent" class="tab-content">
+            <!--静态数据-->
+            <div class="tab-pane fade" id="static" style="display: none">
+                <!--诊断图表-->
+                <div class="static_header">
+                    <div class="num">I</div>
+                    <div id="dcontainer1" class="chartd"></div>
+                    <div class="num right">V1</div>
+                    <div id="dcontainer7" class="chartd"></div>
+                    <div class="num">II</div>
+                    <div id="dcontainer2" class="chartd"></div>
+                    <div class="num  right">V2</div>
+                    <div id="dcontainer8" class="chartd"></div>
+                    <div class="num">III</div>
+                    <div id="dcontainer3" class="chartd"></div>
+                    <div class="num  right">V3</div>
+                    <div id="dcontainer9" class="chartd"></div>
+                    <div class="num">aVR</div>
+                    <div id="dcontainer4" class="chartd"></div>
+                    <div class="num  right">V4</div>
+                    <div id="dcontainer10" class="chartd"></div>
+                    <div class="num">aVL</div>
+                    <div id="dcontainer5" class="chartd"></div>
+                    <div class="num  right">V5</div>
+                    <div id="dcontainer11" class="chartd"></div>
+                    <div class="num">aVF</div>
+                    <div id="dcontainer6" class="chartd"></div>
+                    <div class="num  right">V6</div>
+                    <div id="dcontainer12" class="chartd"></div>
+                    <ul id ="paginator-static" class="zong-pull"></ul>
+                    <a id="upButton"><i class="icon-download-alt icon-2x"></i></a>
+                    <!--<button onclick="openReport()" class="btn btn-lg btn-primary">下载</button>-->
+                </div>
+                <!--诊断结果-->
+                <div class="static_foot">
+                    <div class="result_header">
+                        <h1 class="result_title"><span class="resultTitle" id="time1"></span>诊断结果</h1>
+                    </div>
+                    <div class="result_content">
+                        <a href="" class="heading">诊断结果</a>
+                        <div class="re_content_main">
+                            <h4>结果名称:</h4>
+                            <div class="re_result_main">
+                                <table class='table table-bordered table-model' id="messShow1">
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--动态数据-->
+            <div class="tab-pane fade in active" id="dynamic" style="display: none">
+                <div class="dynamic_header">
+                    <!--1-->
+                    <div class="num">I</div>
+                    <div id="scontainer1" class="chart"></div>
+                    <div class="num  right">V1</div>
+                    <div id="scontainer7" class="chart"></div>
+                    <!--2-->
+                    <div class="num">II</div>
+                    <div id="scontainer2" class="chart"></div>
+                    <div class="num  right">V2</div>
+                    <div id="scontainer8" class="chart"></div>
+                    <!--3-->
+                    <div class="num">III</div>
+                    <div id="scontainer3" class="chart"></div>
+                    <div class="num  right">V3</div>
+                    <div id="scontainer9" class="chart"></div>
+                    <!--4-->
+                    <div class="num">aVR</div>
+                    <div id="scontainer4" class="chart"></div>
+                    <div class="num  right">V4</div>
+                    <div id="scontainer10" class="chart"></div>
+                    <!--5-->
+                    <div class="num">aVL</div>
+                    <div id="scontainer5" class="chart"></div>
+                    <div class="num  right">V5</div>
+                    <div id="scontainer11" class="chart"></div>
+                    <!--6-->
+                    <div class="num">aVF</div>
+                    <div id="scontainer6" class="chart"></div>
+                    <div class="num right">V6</div>
+                    <div id="scontainer12" class="chart"></div>
+                </div>
+                <div class="dynamic_foot">
+                    <div class="result_header">
+                        <h1 class="result_title"><span class="resultTitle" id="time2"></span>诊断结果</h1>
+                    </div>
+                    <div class="result_content">
+                        <a href="" class="heading">诊断结果</a>
+                        <div class="re_content_main">
+                            <h4>结果名称:</h4>
+                            <div class="re_result_main">
+                                <table class='table table-bordered table-model' id="messShow2">
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/highchrts/highcharts.js"></script>
+    <script type="text/javascript" src="js/highchrts/highcharts-more.js"></script>
+    <script type="text/javascript" src="js/highchrts/exporting.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-select.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-paginator.js"></script>
+    <script type="text/javascript" src="js/doctorAdminNew.js"></script>
+</body>
+</html>

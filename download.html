@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap/font-awesome.min.css">
+    <link rel="stylesheet" href="css/download.css">
+    <script type="text/javascript" src="js/jquery/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/highchrts/highcharts.js"></script>
+    <script type="text/javascript" src="js/highchrts/highcharts-more.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-paginator.js"></script>
+    <script type="text/javascript" src="js/download.js"></script>
+
+    <script src="js/jquery/jquery-1.11.0.min.js"></script>
+    <script src="js/jdf/jspdf.debug.js"></script>
+    <script src="js/jdf/jspdf.min.js"></script>
+    <script src="js/jdf/html2canvas.js"></script>
+    <title>download</title>
+</head>
+<body>
+    <div class="" id="appmsg">
+        <div class="download_top">
+            <table class="table speed">
+                <tbody>
+                    <tr>
+                        <td>姓名</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>性别</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>PR</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table result">
+                <h4 id="title"></h4>
+                <tbody id="inspectMess"></tbody>
+            </table>
+        </div>
+        <div class="download_main">
+                <div class="wire">
+                    <!--1-->
+                    <div class="num">I</div>
+                    <div class="wireLine" id="container1"></div>
+                    <div class="num">aVR</div>
+                    <div class="wireLine" id="container4"></div>
+                    <div class="num">V1</div>
+                    <div class="wireLine" id="container7"></div>
+                    <div class="num">V4</div>
+                    <div class="wireLine" id="container10"></div>
+                </div>
+                <div class="wire">
+                    <!--2-->
+                    <div class="num">II</div>
+                    <div class="wireLine" id="container2"></div>
+                    <div class="num">aVL</div>
+                    <div class="wireLine" id="container5"></div>
+                    <div class="num">V2</div>
+                    <div class="wireLine" id="container8"></div>
+                    <div class="num">V5</div>
+                    <div class="wireLine" id="container11"></div>
+                </div>
+                <div class="wire">
+                    <!--3-->
+                    <div class="num">III</div>
+                    <div class="wireLine" id="container3"></div>
+                    <div class="num">aVF</div>
+                    <div class="wireLine" id="container6"></div>
+                    <div class="num">V3</div>
+                    <div class="wireLine" id="container9"></div>
+                    <div class="num">V6</div>
+                    <div class="wireLine" id="container12"></div>
+                </div>
+        </div>
+        <!--<button onclick="openReport()" class="btn btn-lg btn-primary"></button>-->
+    </div>
+    <script>
+        var url = window.location.href;//获取当前浏览器的url
+        index = url.indexOf("flag");//判断当前url是否有flag，如果有，说明是从A页面跳转而来的，就执行下面的程序
+        /*var doc = new jsPDF();
+        doc.text(20, 20, 'Hello world!');
+        doc.text(20, 30, 'This is client-side Javascript, pumping out a PDF.');
+        doc.addPage(); //生成下一页
+        doc.text(20, 20, 'Do you like that?');
+        doc.save('Test.pdf');
+        setTimeout(window.close,4000);*/
+        html2canvas($('#appmsg'), {
+            height:5000,
+            onrendered: function(canvas){
+                var imgData = canvas.toDataURL('img/notice/png');
+                var doc = new jsPDF('p', 'px','a3');
+                //第一列 左右边距  第二列上下边距  第三列是图片左右拉伸  第四列 图片上下拉伸
+                doc.addImage(imgData, 'PNG', -9, 0,650,1500);
+                doc.addPage();
+                doc.addImage(imgData, 'PNG', -9, -900,650,1500);
+                doc.save('test.pdf');
+            }
+        });
+        setTimeout(window.close,5000);
+    </script>
+<!--<script>
+    function openReport() {
+        window.open("http://localhost:8081/ECG/ceshi2.html?flag=true",'newwindow','height=1100,width=1400');
+    }
+</script>-->
+</body>
+</html>

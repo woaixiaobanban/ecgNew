@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>superAdmin</title>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/bootstrap/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap-select.min.css">
+    <script type="text/javascript" src="js/jquery/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-select.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-paginator.js"></script>
+    <script type="text/javascript" src="js/superAdmin.js"></script>
+</head>
+<body>
+    <div class="index_bg1 abs"></div>
+    <!--头部导航-->
+    <div class="nav-bg nav-bg-1">
+        <div class="nav container auto">
+            <div class="header">
+                <div class="logo">
+                    <img src="images/logo.png" alt="">
+                </div>
+                <!--登录登出-->
+                <ul class="nav pull-right">
+                    <li id="super-menue" class="dropdown">
+                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-user"></i>
+                            <span id="superUser">${user.username}</span>
+                            <i class="icon-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a tabindex="-1" href="logout.jsp">登出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!--医生患者信息部分-->
+    <div class="div-61 fix">
+        <!--患者-->
+        <div class="div-2 div-add-12  fix">
+            <div class="div-3 fix">
+                <h2 class="d2-h2">未绑定患者</h2>
+            </div>
+            <div class="div-10 fix">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>年龄</th>
+                        <th>选择绑定的医生</th>
+                        <th>确认绑定</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <!--显示病人所有信息-->
+                        <c:forEach items="${patient.list}" var="p" varStatus="sp">
+                            <tr>
+                                <!--个人信息-->
+                                <td>
+                                    <span>${p.username}</span>
+                                    <!--弹出患者信息-->
+                                    <!--<span data-toggle="popover" title="用户信息" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" data-content="<div>姓名:${p.patient_pName}<br/>性别:${p.patient_sex}<br/>年龄:${p.patient_age}</div>">${p.username}</span>-->
+                                </td>
+                                <td>
+                                    <span>${p.Age}</span>
+                                </td>
+                                <td>
+                                    <select class="selectpicker col-xs-10" data-size="5" name="selectID">
+                                        <option selected>请选择医生</option>
+                                        <c:forEach items="${doctor.list}" var ="d" varStatus="sd">
+                                            <option value="${t.doctor_id}">${t.doctor_name}</option>
+                                        </c:forEach>
+                                    </select>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" id="${p.uid}" data-toggle="dropdown" name="confirmId">确定</button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                <div class="pull-right">
+                    <ul id ="paginator-patient"></ul>
+                </div>
+            </div>
+        </div>
+        <!--医生-->
+        <div class="div-2 div-add-13 fix">
+            <div class="div-4 fix">
+                <h2 class="d2-h2-2">医生信息</h2>
+            </div>
+            <div class="div-10 fix">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>编号</th>
+                        <th>移除</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--显示所有的医生信息-->
+                    <c:forEach items="${patient.list}" var="d" varStatus="sd">
+                        <tr>
+                            <td>${sd.dactor_name}</td>
+                            <td>${sd.doctor_uid}</td>
+                            <td>
+                                <!--弹出个人信息-->
+                                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#LinkDIVDoctor" onclick="showDMess('${d.uid}')">显示个人信息</button>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+                <div class="pull-right">
+                    <ul id ="paginator-doctor"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 医生信息弹出框 -->
+    <div class="modal fade" id="LinkDIVDoctor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel" style="align:center;">个人信息</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-model">
+                        <tbody>
+                            <tr>
+                                <td>姓名:</td>
+                                <td id="dName"></td>
+                            </tr>
+                            <tr>
+                                <td>性别:</td>
+                                <td id="dSex"></td>
+                            </tr>
+                            <tr>
+                                <td>年龄:</td>
+                                <td id="dAge"></td>
+                            </tr>
+                            <tr>
+                                <td>部门:</td>
+                                <td id="dDepart"></td>
+                            </tr>
+                            <tr id="bindPatient">
+                                <td colspan="2"><b>绑定病人</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <!--<button type="button" class="btn btn-primary">提交更改</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

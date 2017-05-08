@@ -1,0 +1,413 @@
+@charset "utf-8";
+/* CSS Document*/
+@import "cssreset.css";
+/*common*/
+.index_bg1{
+    width: 100%;
+    height: 100%;
+    min-width: 1200px;
+    background: url("../images/bg-6.png") no-repeat;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    z-index: -99;
+}
+.abs {
+    position: absolute;
+}
+/*-----导航头部-----*/
+.nav-bg-1 {
+    background: url(../images/nav-bg.png) repeat-x;
+    width: 100%;
+    height: 87px;
+    position: relative!important;
+    top: 0px;
+}
+.nav-bg {
+    background: url(../images/nav-bg.png) repeat-x;
+    width: 100%;
+    min-width: 1200px;
+    height: 87px;
+    position: relative;
+    top: 0;
+}
+.container {
+    width: 100%;
+    min-width: 1200px;
+}
+.auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+.fix:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    font-size: 0;
+}
+.header{
+    width: 95%;
+    height: 87px;
+    margin:0 auto;
+}
+.logo {
+    float: left;
+    margin-top: 11px;
+}
+li#super-menue {
+    padding-top: 20px;
+
+}
+a.dropdown-toggle {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-family: "微软雅黑", Helvetica, Arial, sans-serif;
+}
+.nav .open>a:focus,.nav .open>a:hover{
+    background-color: #E8E8E8;
+}
+.en-ch {
+    float: right;
+    width: 115px;
+    text-align: center;
+    line-height: 87px;
+}
+/*------医生患者------*/
+.div-61 {
+    width: 100%;
+    height: auto;
+    min-width: 1200px;
+    padding-top: 60px;
+}
+.div-3 {
+    height: 62px;
+    background: #b4bfd2;
+    width: 600px;
+}
+.d2-h2 {
+    float: left;
+    line-height: 62px;
+    margin-left: 20px;
+    font-size: 22px;
+    color: #fff;
+}
+.div-10, .div-10-11, .div-10-12 {
+    background: url(../images/bg-7.png) repeat;
+    width: 600px;
+    height: 488px;
+}
+.div-4{
+    height: 62px;
+    background: #b4bfd2;
+    width: 600px;
+}
+.d2-h2-2{
+    line-height: 62px;
+    margin-left: 20px;
+    font-size: 22px;
+    color: #fff;
+}
+
+@media all and (min-width: 1201px){
+    .div-add-13{
+        width: 600px;
+        height: 600px;
+        position: relative;
+        left:90%;
+        margin-left: -500px;
+        margin-top: -600px;
+    }
+    .div-add-12 {
+        width: 600px;
+        height: 600px;
+        position: relative;
+        left: 10%;
+        top: 50%;
+        margin-left: -100px;
+        /*margin-top: -250px;*/
+    }
+    .table{
+        width: 580px;
+        margin-left: 10px;
+    }
+    .table tr>td{
+        width: 193px;
+    }
+}
+@media all and (max-width: 1200px){
+    .div-add-12 {
+        width: 526px;
+        height: 600px;
+        position: relative;
+        top: 50%;
+        margin-left: 25px;
+        /*margin-top: -250px;*/
+    }
+    .div-add-13{
+        width: 526px;
+        height: 600px;
+        position: relative;
+        left:95%;
+        margin-left: -500px;
+        margin-top: -600px;
+    }
+    .div-10, .div-10-11, .div-10-12 {
+        background: url(../images/bg-7.png) repeat;
+        width: 526px;
+        height: 488px;
+    }
+    .div-4{
+        height: 62px;
+        background: #b4bfd2;
+        width: 526px;
+    }
+    .div-3 {
+        height: 62px;
+        background: #b4bfd2;
+        width: 526px;
+    }
+    .table{
+        width: 503px;
+        margin-left: 10px;
+    }
+}
+/*-----table信息-----*/
+table tr>th,table tr>td{
+    text-align: center;
+}
+.table thead tr>th,.table tbody tr>td{
+    height: 45px;
+    line-height: 28px;
+}
+/*------模态框-----*/
+.table-model{
+    width: 95%;
+}
+.table-model tr>td:nth-child(1){
+    width: 45%;
+}
+.table-model tbody tr td{
+    height: 45px;
+    font-size: 14px;
+    line-height: 28px;
+}
+.modal-title{
+    font-size: 16px;
+    text-align: center;
+}
+/*弹出框*/
+.popover-title {
+    padding: 8px 59px;
+    font-weight: 600;
+}
+/*分页*/
+ul#paginator-doctor {
+    margin-top: 320px;
+}
+ul#paginator-patient{
+    margin-top: 320px;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 2;
+    color: #337ab7;
+    cursor: default;
+    background-color:white;
+    border-color: #337ab7;
+}
+/*---------医生界面----------*/
+/*搜索*/
+.search{
+    width: 100%;
+    height: 60px;
+    min-width: 1200px;
+    border: 1px solid #cccccc;
+    margin-top: 5px;
+}
+.pdDiv{
+    width: 90%;
+    margin-top: 10px;
+    margin-left: 3%;
+    font-size: 15px;
+}
+.pdDiv_doctor{
+    text-decoration: none;
+    font-size: 15px;
+    color: black;
+    margin-right: 2%;
+}
+/*主体*/
+.container{
+    position: relative;
+    width: 100%;
+    min-width: 1200px;
+}
+#contain{
+    padding-top: 30px;
+}
+#myChartTab{
+    width: 100%;
+}
+#myChartTab>li{
+    /*width: 50%;*/
+}
+#myChartTab>li a{
+   text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+}
+#dynamic{
+    width: 80%;
+    margin:0 auto;
+    margin-top: 20px;
+    background:white;
+}
+#static{
+    width: 80%;
+    margin:0 auto;
+    margin-top: 20px;
+    background:white;
+    position: relative;
+}
+.static_header{
+    position: relative;
+    height: 1115px;
+    width: 100%;
+    min-width: 1126px;
+}
+.dynamic_header{
+    position: relative;
+    height: 1184px;
+    width: 100%;
+    min-width: 1126px;
+}
+@media all and (max-width: 1200px) {
+    #static{
+        width: 88%;
+        margin:0 auto;
+        margin-top: 20px;
+        background:white;
+        position: relative;
+    }
+    #dynamic{
+        width: 88%;
+        margin:0 auto;
+        margin-top: 20px;
+        background:white;
+    }
+}
+.num{
+    float: left;
+    margin-top: 80px;
+    text-align: center;
+    margin-left: 2px;
+    font-size: 20px;
+    width: 4%;
+}
+.right{
+    margin-left: 16%;
+}
+.chart{
+    min-width: 400px;
+    width: 400px;
+    height: 180px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 16px;
+    /*border: 1px solid #cccccc;*/
+}
+.chartd{
+    min-width: 400px;
+    width: 400px;
+    height: 160px;
+    float: left;
+    margin-left: 10px;
+    margin-top: 16px;
+}
+.static_foot{
+    position: relative;
+    width: 100%;
+    /*border:1px solid #cccccc;*/
+    margin-bottom: 10px;
+    min-width: 1126px;
+}
+.result_header{
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #e6e6e6), color-stop(1, #ffffff));
+    background: -ms-linear-gradient(bottom, #e6e6e6, #ffffff);
+    background: -moz-linear-gradient(center bottom, #e6e6e6 0%, #ffffff 100%);
+    background: -o-linear-gradient(bottom, #e6e6e6, #ffffff);
+    filter: progid:dximagetransform.microsoft.gradient(startColorStr='#e6e6e6', EndColorStr='#ffffff');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#ffffff',EndColorStr='#e6e6e6')";
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #ffffff;
+    border-left: 1px solid #ffffff;
+    padding: 0em 1.25em;
+    height: 60px;
+    width: 97%;
+    margin: 0 auto;
+}
+.result_header h1{
+    margin: 1em 0em;
+    padding: 0em;
+    line-height: 1em;
+    font-size: 1.5em;
+    color: #eee;
+    color: #333;
+}
+.result_content{
+    width: 97%;
+    margin: 0 auto;
+    margin-top: 12px;
+    border: 1px solid #cccccc;
+    height: 400px;
+}
+.result_content .heading{
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #dddddd), color-stop(1, #fafafa));
+    background: -ms-linear-gradient(bottom, #dddddd, #fafafa);
+    background: -moz-linear-gradient(center bottom, #dddddd 0%, #fafafa 100%);
+    background: -o-linear-gradient(bottom, #dddddd, #fafafa);
+    filter: progid:dximagetransform.microsoft.gradient(startColorStr='#e6e6e6', EndColorStr='#ffffff');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fafafa',EndColorStr='#dddddd')";
+    display: block;
+    padding-left: 1em;
+    border-top: 1px solid #fff;
+    outline: none;
+    border-bottom: 1px solid #a6a6a6;
+    border-left: none;
+    color: #505050;
+    display: block;
+    margin-bottom: 0px;
+    text-shadow: none;
+    text-transform: none;
+    font-weight: bold;
+    font-size: .85em;
+    line-height: 3em;
+}
+.re_content_main{
+    margin-left: 1%;
+}
+.re_content_main h4{
+    width: 19%;
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0 auto;
+    margin-top: 14px;
+    margin-bottom: 17px;
+    font-family: inherit;
+    font-weight: bold;
+    line-height: 1;
+    color: inherit;
+}
+.re_content_main{
+    font-size: 14px;
+}
+.dynamic_foot{
+    position: relative;
+    width: 100%;
+    /*border:1px solid #cccccc;*/
+    margin-bottom: 10px;
+    min-width: 1126px;
+}

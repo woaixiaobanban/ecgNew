@@ -1,0 +1,57 @@
+.first_bg{
+    width: 100%;
+    height: 100%;
+    min-width: 1024px;
+    background: url("../images/bg-6.png");
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: -99;
+}
+.ab{
+    position: absolute;
+}
+.upload_main{
+   width: 100%;
+    position: absolute;
+}
+.up_div{
+    width:50%;
+    margin: 0 auto;
+    background: url("../images/upload_modal.png");
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 400px;
+    margin-top: 80px;
+}
+.up_header{
+    height: 62px;
+    background: url("../images/upload_top.png");
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.up_h2{
+    font-size: 22px;
+    color: white;
+    margin-left: 15px;
+    padding-top: 15px;
+    font-family: "微软雅黑", Helvetica, Arial, sans-serif;
+}
+.form-group{
+    height: 38px;
+    line-height: 38px;
+}
+.first_form{
+    margin-top: 15px;
+}
+.form-group label{
+    font-size: 14px;
+    height: 38px;
+    line-height: 38px;
+}
+.form-control{
+    height: 36px;
+    line-height: 36px;
+}
